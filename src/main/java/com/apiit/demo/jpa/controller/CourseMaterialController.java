@@ -10,6 +10,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Log4j2
@@ -41,16 +42,33 @@ public class CourseMaterialController {
         courseMaterialRepository.save(courseMaterial);
 
         log.info("Completed persisting course material: {}", courseMaterial.getName());
-        return ResponseEntity.ok(generateResponse(courseMaterial));
+        return ResponseEntity.ok(generateCourseMaterialResponse(courseMaterial));
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<CourseMaterial>> getAllCourses() {
+    public ResponseEntity<List<InventoriedCourseMaterial>> getAllCourses() {
         log.info("Retrieving all available course materials...");
-        return ResponseEntity.ok(courseMaterialRepository.findAll());
+
+        return ResponseEntity.ok(
+                generateCourseMaterialListResponse(
+                        courseMaterialRepository.findAll()
+                )
+        );
     }
 
-    private InventoriedCourseMaterial generateResponse(CourseMaterial material) {
+    private List<InventoriedCourseMaterial> generateCourseMaterialListResponse(List<CourseMaterial> courseMaterials) {
+        log.info("Generating response for list of course materials...");
+
+        final List<InventoriedCourseMaterial> responseList = new ArrayList<>();
+
+        for (CourseMaterial material : courseMaterials) {
+            responseList.add(generateCourseMaterialResponse(material));
+        }
+
+        return responseList;
+    }
+
+    private InventoriedCourseMaterial generateCourseMaterialResponse(CourseMaterial material) {
         log.info("Generating response: {}: {}", material.getId(), material.getName());
 
         return InventoriedCourseMaterial.builder()
