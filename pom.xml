@@ -77,4 +77,11 @@
 		</plugins>
 	</build>
 
+	<distributionManagement>
+		<repository>
+			<id>releases</id>
+			<url>https://github.com/000407/HFK2161SE-jpa-demo/releases</url>
+		</repository>
+	</distributionManagement>
+
 </project>
