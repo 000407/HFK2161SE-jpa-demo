@@ -9,7 +9,7 @@
 	</parent>
 	<groupId>com.apiit.demo.jpa</groupId>
 	<artifactId>jpa-demo</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<name>jpa-demo</name>
 	<description>Demo project for using JPA in Spring Boot</description>
 	<properties>
@@ -19,7 +19,7 @@
 
 	<scm>
 		<developerConnection>scm:git:https://github.com/000407/HFK2161SE-jpa-demo/</developerConnection>
-	  <tag>jpa-demo-0.0.1</tag>
+	  <tag>HEAD</tag>
   </scm>
 
 	<dependencies>
