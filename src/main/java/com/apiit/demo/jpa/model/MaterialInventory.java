@@ -23,4 +23,12 @@ public class MaterialInventory {
 
     @Column(nullable = false)
     private long numberOfCopies;
+
+    public boolean checkIfCopiesAreUnavailable() {
+        return numberOfCopies < 1;
+    }
+
+    public void markOneCopyGranted() {
+        numberOfCopies -= 1;
+    }
 }

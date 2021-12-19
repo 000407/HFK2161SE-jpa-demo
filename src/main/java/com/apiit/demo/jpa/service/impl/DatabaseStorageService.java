@@ -3,11 +3,10 @@ package com.apiit.demo.jpa.service.impl;
 import com.apiit.demo.jpa.model.UploadedFile;
 import com.apiit.demo.jpa.repo.FileRepository;
 import com.apiit.demo.jpa.service.StorageService;
-import com.apiit.demo.jpa.service.exception.FileNotFoundException;
+import com.apiit.demo.jpa.service.exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
-import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -39,7 +38,7 @@ public class DatabaseStorageService implements StorageService {
     public byte[] loadFileBytes(Long id) {
         try {
             UploadedFile uploadedFile = fileRepository.findById(id)
-                .orElseThrow(() -> new FileNotFoundException("File not found with ID " + id));
+                .orElseThrow(() -> new NotFoundException("File not found with ID " + id));
 
             byte[] bytes = uploadedFile.getContent()
                     .getBytes(1, (int) uploadedFile.getContent().length());

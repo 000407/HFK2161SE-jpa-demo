@@ -24,6 +24,6 @@ public class Student {
     @ManyToMany(mappedBy = "studentEnrollments")
     private List<Course> courses;
 
-    @OneToMany(mappedBy = "student")
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
     List<MaterialGrant> materialGrants;
 }
