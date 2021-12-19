@@ -1,13 +1,19 @@
 package com.apiit.demo.jpa.model;
 
 import com.apiit.demo.jpa.model.keys.MaterialGrantKey;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class MaterialGrant {
 
     /*
@@ -15,7 +21,7 @@ public class MaterialGrant {
      */
 
     @EmbeddedId
-    MaterialGrantKey id;
+    private MaterialGrantKey id = new MaterialGrantKey();
 
     @ManyToOne
     @MapsId("studentId")
